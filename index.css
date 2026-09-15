@@ -1,0 +1,62 @@
+@import "tailwindcss";
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+
+/* ------------------------------------------------------------------ */
+/*  Charte graphique — Abdel Sobou                                     */
+/*  60 % blanc · 30 % #cd4c00 (titres forts, bordures) · 10 % #ff7c30 */
+/* ------------------------------------------------------------------ */
+@theme {
+  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+
+  /* Accent principal — 10 % (CTA, hover) */
+  --color-flame: #ff7c30;
+  --color-flame-deep: #e96a1e;
+
+  /* Accent secondaire — 30 % (titres forts, bordures) */
+  --color-ember: #cd4c00;
+  --color-ember-deep: #a63e00;
+
+  /* Neutres chauds (texte courant) */
+  --color-ink: #261b11;
+  --color-bark: #716558;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #ffffff;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Micro-animation d'entrée (fade + rise) — utilisée avec la variable --d pour le délai */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-rise {
+  opacity: 0;
+  animation: rise 0.8s cubic-bezier(0.22, 0.65, 0.3, 1) forwards;
+  animation-delay: var(--d, 0ms);
+}
+
+/* Accessibilité : respect de la réduction des mouvements */
+@media (prefers-reduced-motion: reduce) {
+  .animate-rise {
+    animation: none;
+    opacity: 1;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
